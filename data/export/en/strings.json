@@ -1,0 +1,61 @@
+{
+  "lang": "en",
+  "files": {
+    "dossier": "Life-Archive.md",
+    "prompt": "Distillation-Brief.md",
+    "coverage": "Coverage-Report.md",
+    "backup": "Answers-Backup.json",
+    "next": "Next-Steps.md"
+  },
+  "labels": {
+    "dossier": "Life Archive",
+    "prompt": "Distillation Brief",
+    "coverage": "Coverage Report",
+    "backup": "Answers Backup",
+    "next": "Next Steps"
+  },
+  "dossier": {
+    "title": "# Life Archive · {name}",
+    "meta": "> Generated: {date} | {answered} / {total} questions answered (core {core_answered} / {core_total}) | about {chars} characters of body text",
+    "noteEvidence": "> This is raw oral evidence, not a character sketch. It keeps the slips of the tongue, the contradictions, the jumps and the unfinished sentences.",
+    "notePrivate": "> Anything marked \"private\" is by default used only for the person's own verification and does not enter outward conversation.",
+    "coverage": "## Coverage overview",
+    "tableModule": "Module",
+    "tableAnswered": "Answered",
+    "tableCore": "Core",
+    "tableChars": "Characters",
+    "chapterEmpty": "(this chapter has no answers yet)",
+    "question": "Q",
+    "answer": "A",
+    "core": "Core",
+    "private": "Private",
+    "tagPrefix": " · ",
+    "tagSeparator": " / ",
+    "labelSeparator": ": ",
+    "gapsTitle": "## Not yet collected",
+    "gapsNote": "> A gap is not a defect, it is a boundary. When the twin is asked about these things it should say \"I've never talked about that / I don't remember\", not invent a plausible answer."
+  },
+  "coverage": {
+    "title": "# Coverage Report · {name}",
+    "overall": "- Overall progress: **{answered}/{total}** ({pct}%)",
+    "coreLine": "- Core progress: **{core_answered}/{core_total}** ({core_pct}%)",
+    "charsLine": "- Total characters: **{chars}**",
+    "privateLine": "- Private questions: {n}",
+    "byChapter": "## By chapter",
+    "tableModule": "Module",
+    "tableAnswered": "Answered",
+    "tableCore": "Core",
+    "tableChars": "Characters",
+    "tableProgress": "Progress",
+    "nextSteps": "## Suggested next steps"
+  },
+  "suggestions": {
+    "missingCore": "{n} core questions are still unanswered; the first version of the twin only holds up once they are filled in.",
+    "languageSamples": "Not enough language samples: answer at least 3 questions in M13 and paste in 3 real messages, verbatim. This is the single biggest factor in whether the twin sounds like the person.",
+    "weakChapters": "These chapters are still thin: {names}. Three to five more answers in each and the archive will visibly change.",
+    "shortAnswers": "{n} core answers are a single sentence. Pick 10 of them and add one concrete scene; that is worth more than answering 30 new questions.",
+    "shadowEmpty": "The shadow layer is empty. Answer at least 2 questions (the skippable ones), or the twin will come out too \"clean\".",
+    "allGood": "Coverage is already good. The next step is not more answering but a verification exam: see twin/exam.md."
+  },
+  "listSeparator": ", "
+}

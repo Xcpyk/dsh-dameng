@@ -1,0 +1,61 @@
+{
+  "lang": "ko",
+  "files": {
+    "dossier": "인생-아카이브.md",
+    "prompt": "증류-브리프.md",
+    "coverage": "커버리지-리포트.md",
+    "backup": "답변-백업.json",
+    "next": "다음-단계.md"
+  },
+  "labels": {
+    "dossier": "인생 아카이브",
+    "prompt": "증류 브리프",
+    "coverage": "커버리지 리포트",
+    "backup": "답변 백업",
+    "next": "다음 단계"
+  },
+  "dossier": {
+    "title": "# 인생 아카이브 · {name}",
+    "meta": "> 생성 시간: {date} | 답변 {answered} / {total}문항 (핵심 {core_answered} / {core_total}) | 본문 약 {chars}자",
+    "noteEvidence": "> 이건 인물 소전이 아니라 원본 구술 증거예요. 말실수, 모순, 건너뛴 부분, 끝맺지 못한 말을 그대로 남겼어요.",
+    "notePrivate": "> 「비공개」로 표시된 내용은 기본적으로 본인 확인용으로만 쓰고, 대외 대화에는 넣지 않아요.",
+    "coverage": "## 커버리지 개요",
+    "tableModule": "모듈",
+    "tableAnswered": "답변",
+    "tableCore": "핵심",
+    "tableChars": "문자",
+    "chapterEmpty": "(이 장은 아직 답하지 않았어요)",
+    "question": "질문",
+    "answer": "답변",
+    "core": "핵심",
+    "private": "비공개",
+    "tagPrefix": " · ",
+    "tagSeparator": " / ",
+    "labelSeparator": ": ",
+    "gapsTitle": "## 아직 수집하지 못한 것",
+    "gapsNote": "> 공백은 결함이 아니라 경계예요. 디지털 휴먼이 이런 내용을 질문받으면 그럴듯한 답을 지어내지 말고, 「이건 얘기한 적 없어요 / 기억이 안 나요」라고 말해야 해요."
+  },
+  "coverage": {
+    "title": "# 커버리지 리포트 · {name}",
+    "overall": "- 전체 진행률: **{answered}/{total}** ({pct}%)",
+    "coreLine": "- 핵심 진행률: **{core_answered}/{core_total}** ({core_pct}%)",
+    "charsLine": "- 총 문자 수: **{chars}**",
+    "privateLine": "- 비공개 질문: {n}개",
+    "byChapter": "## 장별",
+    "tableModule": "모듈",
+    "tableAnswered": "답변",
+    "tableCore": "핵심",
+    "tableChars": "문자",
+    "tableProgress": "진행률",
+    "nextSteps": "## 다음 단계 제안"
+  },
+  "suggestions": {
+    "missingCore": "핵심 질문이 {n}개 아직 답하지 않았어요. 다 채워야 첫 버전 디지털 휴먼이 성립해요.",
+    "languageSamples": "언어 표본이 부족해요: M13에서 최소 3문항에 답하고, 실제 메시지 원문 3개를 붙이세요. 이게 「닮았는지」의 가장 큰 변수예요.",
+    "weakChapters": "이 장들이 아직 얇아요: {names}. 장마다 3–5문항을 더 보충하면 아카이브가 눈에 띄게 달라져요.",
+    "shortAnswers": "핵심 질문 중 {n}개가 한 문장뿐이에요. 그중 10문항을 골라 구체적인 장면을 하나씩 더하는 게, 새 질문 30개를 더 답하는 것보다 나아요.",
+    "shadowEmpty": "그림자 층이 비어 있어요. 최소 2문항(건너뛰기 가능 문항)은 답하세요. 그러지 않으면 디지털 휴먼이 너무 「깨끗해」 보여요.",
+    "allGood": "커버리지는 이미 괜찮아요. 다음은 계속 답하는 게 아니라 검증 시험을 돌리는 거예요: twin/exam.md를 보세요."
+  },
+  "listSeparator": ", "
+}

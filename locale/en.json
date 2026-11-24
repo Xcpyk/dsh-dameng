@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Dameng",
+    "description": "Run a 140-question life survey in chat and distill a digital twin from the answers, with local-only storage and four languages.",
+    "detail": "docs/DETAIL.md"
+  }
+}

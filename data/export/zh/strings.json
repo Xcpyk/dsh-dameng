@@ -1,0 +1,61 @@
+{
+  "lang": "zh",
+  "files": {
+    "dossier": "人生档案.md",
+    "prompt": "蒸馏指令.md",
+    "coverage": "覆盖报告.md",
+    "backup": "回答备份.json",
+    "next": "下一步.md"
+  },
+  "labels": {
+    "dossier": "人生档案",
+    "prompt": "蒸馏指令",
+    "coverage": "覆盖报告",
+    "backup": "回答备份",
+    "next": "下一步"
+  },
+  "dossier": {
+    "title": "# 人生档案 · {name}",
+    "meta": "> 生成时间：{date}　|　已答 {answered} / {total} 题（主线 {core_answered} / {core_total}）　|　正文约 {chars} 字符",
+    "noteEvidence": "> 这是原始口述证据，不是人物小传。保留了口误、矛盾、跳跃和没有说完的话。",
+    "notePrivate": "> 标注「私密」的内容默认只用于本人校验，不进入对外对话。",
+    "coverage": "## 覆盖概览",
+    "tableModule": "模块",
+    "tableAnswered": "回答",
+    "tableCore": "主线",
+    "tableChars": "字符",
+    "chapterEmpty": "（本章尚未回答）",
+    "question": "问",
+    "answer": "答",
+    "core": "主线",
+    "private": "私密",
+    "tagPrefix": " · ",
+    "tagSeparator": " / ",
+    "labelSeparator": "：",
+    "gapsTitle": "## 尚未采集",
+    "gapsNote": "> 空白不是缺陷，是边界。数字人被问到这些内容时，应当说「这个没聊过 / 我不记得」，而不是编一个合理的答案。"
+  },
+  "coverage": {
+    "title": "# 覆盖报告 · {name}",
+    "overall": "- 总进度：**{answered}/{total}**（{pct}%）",
+    "coreLine": "- 主线进度：**{core_answered}/{core_total}**（{core_pct}%）",
+    "charsLine": "- 总字符：**{chars}**",
+    "privateLine": "- 私密题：{n} 道",
+    "byChapter": "## 分章",
+    "tableModule": "模块",
+    "tableAnswered": "回答",
+    "tableCore": "主线",
+    "tableChars": "字符",
+    "tableProgress": "进度",
+    "nextSteps": "## 下一步建议"
+  },
+  "suggestions": {
+    "missingCore": "还有 {n} 道主线题没答，补齐后第一版数字人才算成立。",
+    "languageSamples": "语言样本不足：M13 至少答 3 题，并贴 3 段真实消息原文。这是「像不像」的最大变量。",
+    "weakChapters": "这些章节还很薄：{names}。每章再补 3–5 题，档案会有明显变化。",
+    "shortAnswers": "有 {n} 道主线题只有一句话。挑其中 10 题补一个具体场景，胜过再答 30 道新题。",
+    "shadowEmpty": "阴影层是空的。至少答 2 题（可跳过题），否则数字人会过于「干净」。",
+    "allGood": "覆盖已经不错。下一步不是继续答题，而是跑校验考试：见 twin/exam.md。"
+  },
+  "listSeparator": "、"
+}

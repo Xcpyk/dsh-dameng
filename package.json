@@ -1,0 +1,42 @@
+{
+  "name": "dsh-dameng",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A 140-question life survey and digital-twin distillation, driven entirely in chat.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xcpyk/dsh-dameng.git"
+  },
+  "engines": {
+    "dsh": ">=0.2.2-rc.1 <0.3.0-0"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "life-survey",
+    "digital-twin",
+    "privacy",
+    "journaling"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "lib.js",
+    "cordis.patch.yml",
+    "data",
+    "locale",
+    "docs",
+    "icon.svg",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

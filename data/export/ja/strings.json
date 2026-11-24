@@ -1,0 +1,61 @@
+{
+  "lang": "ja",
+  "files": {
+    "dossier": "人生アーカイブ.md",
+    "prompt": "蒸留ブリーフ.md",
+    "coverage": "カバレッジレポート.md",
+    "backup": "回答バックアップ.json",
+    "next": "次のステップ.md"
+  },
+  "labels": {
+    "dossier": "人生アーカイブ",
+    "prompt": "蒸留ブリーフ",
+    "coverage": "カバレッジレポート",
+    "backup": "回答バックアップ",
+    "next": "次のステップ"
+  },
+  "dossier": {
+    "title": "# 人生アーカイブ · {name}",
+    "meta": "> 生成日時：{date}　|　回答済み {answered} / {total} 問（メイン {core_answered} / {core_total}）　|　本文約 {chars} 文字",
+    "noteEvidence": "> これは生の口述証拠であり、人物評伝ではありません。言い間違い、矛盾、飛躍、言いかけた言葉もそのまま残しています。",
+    "notePrivate": "> 「私的」と記した内容は、既定では本人の確認にだけ使い、対外対話には入れません。",
+    "coverage": "## カバレッジ概要",
+    "tableModule": "モジュール",
+    "tableAnswered": "回答",
+    "tableCore": "メイン",
+    "tableChars": "文字",
+    "chapterEmpty": "（この章はまだ回答がありません）",
+    "question": "問",
+    "answer": "答",
+    "core": "メイン",
+    "private": "私的",
+    "tagPrefix": " · ",
+    "tagSeparator": " / ",
+    "labelSeparator": "：",
+    "gapsTitle": "## 未収集",
+    "gapsNote": "> 空白は欠陥ではなく、境界です。デジタルツインがこれらを問われたときは、もっともらしい答えをでっち上げず、「これは話したことがありません／覚えていません」と答えるべきです。"
+  },
+  "coverage": {
+    "title": "# カバレッジレポート · {name}",
+    "overall": "- 全体の進捗：**{answered}/{total}**（{pct}%）",
+    "coreLine": "- メインの進捗：**{core_answered}/{core_total}**（{core_pct}%）",
+    "charsLine": "- 総文字数：**{chars}**",
+    "privateLine": "- 私的設問：{n} 問",
+    "byChapter": "## 章別",
+    "tableModule": "モジュール",
+    "tableAnswered": "回答",
+    "tableCore": "メイン",
+    "tableChars": "文字",
+    "tableProgress": "進捗",
+    "nextSteps": "## 次にやること"
+  },
+  "suggestions": {
+    "missingCore": "まだ {n} 問のメイン設問が未回答です。ここを埋めて初めて、最初の版のデジタルツインが成立します。",
+    "languageSamples": "言語サンプルが足りません：M13 に少なくとも 3 問答え、実際のメッセージ原文を 3 つ貼ってください。ここが「似ているか」の最大の変数です。",
+    "weakChapters": "まだ薄い章：{names}。各章であと 3〜5 問補うと、アーカイブは目に見えて変わります。",
+    "shortAnswers": "{n} 問のメイン設問が一文だけです。そのうち 10 問に具体的な場面を一つ補うほうが、新しい設問を 30 問答えるより効きます。",
+    "shadowEmpty": "影の層が空です。少なくとも 2 問（スキップできる設問）に答えてください。そうしないとデジタルツインが「清らかすぎる」ものになります。",
+    "allGood": "カバレッジは十分です。次は回答を続けることではなく、検証試験を回すことです：twin/exam.md を参照してください。"
+  },
+  "listSeparator": "、"
+}
