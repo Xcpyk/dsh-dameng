@@ -79,6 +79,13 @@ const UI = {
   },
 }
 
+const IMPORT_UI = {
+  zh: { imported: '导入', existing: '已有', unknown: '未知' },
+  en: { imported: 'Imported', existing: 'already answered', unknown: 'unknown' },
+  ja: { imported: '読み込み', existing: '回答済み', unknown: '不明' },
+  ko: { imported: '가져옴', existing: '이미 답변', unknown: '알 수 없음' },
+}
+
 export function defaultDataDir() {
   const home = process.env.DSH_HOME || path.join(os.homedir(), '.dsh')
   return path.join(home, 'dameng')
@@ -413,7 +420,13 @@ export function createService(options = {}) {
     return lines.join('\n')
   }
 
-  const dossier = (answers, name, lang) => {
+  const privateIds = (lang) => new Set(
+    allQuestions(lang)
+      .filter((q) => (q.tags || []).some((t) => PRIVATE_TAGS.has(t)))
+      .map((q) => q.full_id)
+  )
+
+  const dossier = (answers, name, lang, includePrivate = false) => {
     const exp = loadExport(lang)
     const d = exp.strings.dossier
     const cov = coverage(answers, exp.code)
@@ -432,6 +445,7 @@ export function createService(options = {}) {
       '>',
       d.noteEvidence,
       d.notePrivate,
+      ...(includePrivate ? [d.privateWarning] : []),
       '',
       d.coverage,
       '',
@@ -450,10 +464,12 @@ export function createService(options = {}) {
         continue
       }
       for (const q of done) {
+        const isPrivate = (q.tags || []).some((t) => PRIVATE_TAGS.has(t))
         const tags = []
         if (q.core) tags.push(d.core)
-        if ((q.tags || []).some((t) => PRIVATE_TAGS.has(t))) tags.push(d.private)
+        if (isPrivate) tags.push(d.private)
         const label = tags.length ? d.tagPrefix + tags.join(d.tagSeparator) : ''
+        const body = isPrivate && !includePrivate ? d.privateOmitted : answers[q.full_id]
         lines.push(
           `### ${q.full_id} ${q.title}${label}`,
           '',
@@ -461,7 +477,7 @@ export function createService(options = {}) {
           '',
           `**${d.answer}**${d.labelSeparator}`,
           '',
-          quote(answers[q.full_id]),
+          quote(body),
           ''
         )
       }
@@ -483,7 +499,7 @@ export function createService(options = {}) {
     return lines.join('\n')
   }
 
-  const exportAll = ({ name, lang, outDir } = {}) => {
+  const exportAll = ({ name, lang, outDir, includePrivate = false } = {}) => {
     const s = loadStore()
     const code = resolveLang(lang, s)
     const exp = loadExport(code)
@@ -499,7 +515,10 @@ export function createService(options = {}) {
       }
       folder = target
     } else {
-      folder = path.join(dataDir, 'exports', `${stamp()}_${safeName(finalName)}`)
+      const base = path.join(dataDir, 'exports', `${stamp()}_${safeName(finalName)}`)
+      folder = base
+      let n = 2
+      while (fs.existsSync(folder)) folder = `${base}_${n++}`
     }
     fs.mkdirSync(folder, { recursive: true, mode: 0o700 })
     const names = exp.strings.files
@@ -510,15 +529,21 @@ export function createService(options = {}) {
       backup: path.join(folder, names.backup),
       next: path.join(folder, names.next),
     }
-    const body = dossier(answers, finalName, code)
+    const body = dossier(answers, finalName, code, includePrivate)
     writeAtomic(paths.dossier, body)
     writeAtomic(paths.prompt, `${exp.prompt.trimEnd()}\n\n${body}\n`)
     writeAtomic(paths.coverage, coverageMarkdown(answers, finalName, code))
+    const privateSet = privateIds(code)
+    const backupAnswers = includePrivate
+      ? answers
+      : Object.fromEntries(Object.entries(answers).filter(([qid]) => !privateSet.has(qid)))
     writeAtomic(paths.backup, JSON.stringify({
       name: finalName,
       lang: code,
       exported_at: new Date().toISOString(),
-      answers,
+      private_included: Boolean(includePrivate),
+      private_omitted: [...privateSet].some((qid) => answered(answers, qid)),
+      answers: backupAnswers,
       skipped: s.skipped,
     }, null, 2))
     writeAtomic(paths.next, exp.next)
@@ -540,6 +565,44 @@ export function createService(options = {}) {
     }
   }
 
+  const importAnswers = ({ file } = {}) => {
+    if (!file) throw new Error('file is required')
+    const raw = JSON.parse(fs.readFileSync(path.resolve(file), 'utf8'))
+    const items = raw && raw.answers && typeof raw.answers === 'object' ? raw.answers : raw
+    if (!items || typeof items !== 'object' || Array.isArray(items)) {
+      throw new Error('answers object not found')
+    }
+    const s = loadStore()
+    const code = resolveLang(undefined, s)
+    const qmap = questionMap(code)
+    let imported = 0
+    let existing = 0
+    let unknown = 0
+    for (const [qid, value] of Object.entries(items)) {
+      if (!qmap.has(qid)) { unknown += 1; continue }
+      if (answered(s.answers, qid)) { existing += 1; continue }
+      const text = String(value == null ? '' : value).trim()
+      if (!text || text.length > 20000) continue
+      s.answers[qid] = text
+      delete s.skipped[qid]
+      imported += 1
+    }
+    saveStore(s)
+    const cov = coverage(s.answers, code)
+    const iu = IMPORT_UI[code] || IMPORT_UI.en
+    return {
+      imported,
+      skipped_existing: existing,
+      unknown,
+      lang: code,
+      answered: cov.answered,
+      total: cov.total,
+      core_answered: cov.core_answered,
+      core_total: cov.core_total,
+      text: `${iu.imported} ${imported} · ${iu.existing} ${existing} · ${iu.unknown} ${unknown}\n${progressLine(cov, code, s)}`,
+    }
+  }
+
   return {
     dataDir,
     storePath,
@@ -555,6 +618,7 @@ export function createService(options = {}) {
     dossier,
     coverageMarkdown,
     exportAll,
+    importAnswers,
     loadExport,
   }
 }

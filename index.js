@@ -117,6 +117,28 @@ function toolAnswer(svc) {
   }
 }
 
+function toolImport(svc) {
+  return {
+    name: 'dameng_import',
+    description:
+      'Import an Answers backup JSON exported by the web app or the plugin. Merges missing answers only; existing answers are never overwritten. Returns imported / already answered / unknown counts.',
+    parameters: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['path'],
+      properties: {
+        path: { type: 'string', description: 'Path to a JSON file with an `answers` object (or a bare qid-to-text object).' },
+      },
+    },
+    output: TEXT_OUTPUT,
+    presentCall: () => ({ card: 'generic', title: 'Import Dameng answers', kind: 'edit' }),
+    async execute(args) {
+      const a = args || {}
+      return svc.importAnswers({ file: a.path })
+    },
+  }
+}
+
 function toolExport(svc) {
   return {
     name: 'dameng_export',
@@ -129,13 +151,14 @@ function toolExport(svc) {
         name: { type: 'string', description: 'Name shown on the archive. Defaults to the stored name, then a localized “me”.' },
         lang: LANG,
         outDir: { type: 'string', description: 'Optional subdirectory under the Dameng data directory. Defaults to <data dir>/exports/<timestamp>_<name>.' },
+        includePrivate: { type: 'boolean', description: 'Include private-layer answers as raw text. Default false; private answers are omitted from the public dossier and backup.' },
       },
     },
     output: TEXT_OUTPUT,
     presentCall: () => ({ card: 'generic', title: 'Export Dameng archive', kind: 'execute' }),
     async execute(args) {
       const a = args || {}
-      return svc.exportAll({ name: a.name, lang: a.lang, outDir: a.outDir })
+      return svc.exportAll({ name: a.name, lang: a.lang, outDir: a.outDir, includePrivate: Boolean(a.includePrivate) })
     },
   }
 }
@@ -147,6 +170,7 @@ export function apply(ctx) {
     toolGuide(svc),
     toolQuestions(svc),
     toolAnswer(svc),
+    toolImport(svc),
     toolExport(svc),
   ]
   ctx.effect(() => {

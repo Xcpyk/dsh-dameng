@@ -33,7 +33,9 @@
     "tagSeparator": " / ",
     "labelSeparator": ": ",
     "gapsTitle": "## Not yet collected",
-    "gapsNote": "> A gap is not a defect, it is a boundary. When the twin is asked about these things it should say \"I've never talked about that / I don't remember\", not invent a plausible answer."
+    "gapsNote": "> A gap is not a defect, it is a boundary. When the twin is asked about these things it should say \"I've never talked about that / I don't remember\", not invent a plausible answer.",
+    "privateOmitted": "[Private layer, omitted]",
+    "privateWarning": "> This export contains private-layer text. Do not share it or upload it to a public model; use it only in an environment you control."
   },
   "coverage": {
     "title": "# Coverage Report · {name}",

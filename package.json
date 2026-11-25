@@ -1,6 +1,6 @@
 {
   "name": "dsh-dameng",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "A 140-question life survey and digital-twin distillation, driven entirely in chat.",
   "license": "MIT",
@@ -38,5 +38,8 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
+  },
+  "scripts": {
+    "test": "node --test"
   }
 }
